@@ -134,7 +134,7 @@
       inset: 0;
       background:
         linear-gradient(90deg, rgba(14,28,61,0.88) 0%, rgba(14,28,61,0.7) 45%, rgba(0,70,119,0.3) 100%),
-        url('https://images.unsplash.com/photo-1758518730384-be3d205838e8?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+        url('https://images.unsplash.com/photo-1758518730384-be3d205838e8?auto=format&fit=crop&w=1600&q=80') center top/cover no-repeat;
     }
     .page-hero-content {
       position: relative;
@@ -180,7 +180,7 @@
       margin-bottom: 16px;
     }
     .enquiry-card select,
-    .enquiry-card input,
+    .enquiry-card input:not([type="checkbox"]),
     .enquiry-card textarea {
       width: 100%;
       padding: 10px 14px;
@@ -203,6 +203,9 @@
     }
     .enquiry-card .btn:hover { background: #b8973e; }
     .enquiry-privacy {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       font-size: 11px;
       color: var(--text-muted);
       margin-top: 10px;
@@ -279,27 +282,47 @@
     /* ─── Service rows ─── */
     .service-rows {
       margin-top: 56px;
-      border-top: 1px solid var(--line);
+      display: flex;
+      gap: 20px;
+      overflow: hidden;
     }
     .service-row {
-      display: grid;
-      grid-template-columns: 220px 1fr auto;
-      gap: 32px;
-      align-items: center;
-      padding: 28px 0;
-      border-bottom: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 32px 28px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      flex: 1 1 0;
+      min-width: 0;
+      transition: box-shadow 0.4s ease, transform 0.4s ease, background 0.4s ease, border-color 0.4s ease, flex 0.5s ease;
     }
+    .service-row.active {
+      flex: 2.2 1 0;
+      background: var(--navy);
+      border-color: var(--navy);
+      box-shadow: 0 12px 40px rgba(14,28,61,0.22);
+      transform: translateY(-3px);
+    }
+    .service-row.active .service-row-title { color: rgba(255,255,255,0.6); }
+    .service-row.active .service-row-desc { color: rgba(255,255,255,0.88); }
+    .service-row.active .learn-btn { background: var(--gold); }
+    .service-row.active .learn-btn:hover { background: #b8973e; }
     .service-row-title {
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--navy);
+      transition: color 0.4s ease;
     }
     .service-row-desc {
       font-size: 15px;
       line-height: 1.7;
       color: var(--text);
+      flex: 1;
+      transition: color 0.4s ease;
     }
     .service-row .learn-btn {
       display: inline-flex;
@@ -315,6 +338,7 @@
       text-transform: uppercase;
       white-space: nowrap;
       transition: background 0.2s ease;
+      align-self: flex-start;
     }
     .service-row .learn-btn:hover { background: var(--navy); }
     .service-row .learn-btn svg {
@@ -547,10 +571,9 @@
     }
     .article-card { border-radius: 4px; overflow: hidden; box-shadow: 0 4px 20px rgba(14,28,61,0.07); }
     .article-img {
-      height: 180px;
-      background: linear-gradient(160deg, #1d3461 0%, #0e1c3d 100%);
+      aspect-ratio: 16 / 9;
       background-size: cover;
-      background-position: center;
+      background-position: center center;
     }
     .article-body { padding: 24px 20px; }
     .article-body h3 {
@@ -726,37 +749,12 @@
         <input type="tel" placeholder="Your phone number">
         <button class="btn">Submit</button>
         <p class="enquiry-privacy">
-          <input type="checkbox" id="privacy" style="margin-right:6px;">
+          <input type="checkbox" id="privacy">
           <label for="privacy">I agree to the Owen Hodge Lawyer's privacy policy.</label>
         </p>
       </div>
     </div>
   </header>
-
-  <!-- BREADCRUMB -->
-  <div class="breadcrumb">
-    <div class="shell">
-      <div class="breadcrumb-inner">
-        <a href="owen_hodge_homepage.html">Home</a>
-        <span>›</span>
-        <span>Commercial Law</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- PAGE TABS -->
-  <div class="page-tabs">
-    <div class="shell">
-      <div class="page-tabs-inner">
-        <a class="page-tab active" href="#overview">Overview</a>
-        <a class="page-tab" href="#services">Commercial Law</a>
-        <a class="page-tab" href="#contact">Get in Touch</a>
-        <a class="page-tab" href="#team">Meet the Team</a>
-        <a class="page-tab" href="#testimonials">Testimonials</a>
-        <a class="page-tab" href="#faq">Ask the Team</a>
-      </div>
-    </div>
-  </div>
 
   <!-- OVERVIEW -->
   <section class="page-content" id="overview">
@@ -960,21 +958,21 @@
       <h2 class="articles-title">Popular Articles</h2>
       <div class="articles-grid">
         <div class="article-card">
-          <div class="article-img" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80');"></div>
+          <div class="article-img" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80');"></div>
           <div class="article-body">
             <h3>10 Tips to Break Your Commercial Lease Early</h3>
             <a href="#" class="article-arrow">Read More →</a>
           </div>
         </div>
         <div class="article-card">
-          <div class="article-img" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80');"></div>
+          <div class="article-img" style="background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80');"></div>
           <div class="article-body">
             <h3>Commercial debt forgiveness &amp; payout deductibility in a MBO</h3>
             <a href="#" class="article-arrow">Read More →</a>
           </div>
         </div>
         <div class="article-card">
-          <div class="article-img" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80');"></div>
+          <div class="article-img" style="background-image: url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=800&q=80');"></div>
           <div class="article-body">
             <h3>Commercial Tenant Interview Questions</h3>
             <a href="#" class="article-arrow">Read More →</a>
@@ -1064,6 +1062,24 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      const cards = document.querySelectorAll('.service-row');
+      let current = 0;
+      function activate(i) {
+        cards.forEach((c, idx) => c.classList.toggle('active', idx === i));
+      }
+      activate(current);
+      setInterval(function () {
+        current = (current + 1) % cards.length;
+        activate(current);
+      }, 2200);
+      cards.forEach(function (card, i) {
+        card.addEventListener('mouseenter', function () { activate(i); });
+      });
+    })();
+  </script>
 
 </body>
 </html>
