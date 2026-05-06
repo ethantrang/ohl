@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Owen Hodge Lawyers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0e1c3d;
+      --navy-deep: #091426;
+      --blue: #004677;
+      --gold: #c9a84c;
+      --offwhite: #f1f1ef;
+      --white: #ffffff;
+      --text: #39455f;
+      --text-muted: #6b7899;
+      --line: rgba(14, 28, 61, 0.1);
+      --shadow: 0 24px 60px rgba(14, 28, 61, 0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: "Manrope", sans-serif; color: var(--navy); background: #ffffff; overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    .shell { width: min(1240px, calc(100% - 48px)); margin: 0 auto; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      border: 1px solid transparent; border-radius: 999px; padding: 14px 28px;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      transition: transform 0.22s ease, background 0.22s ease, color 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+      cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--blue); color: var(--white); }
+    .btn-primary:hover { background: var(--navy); box-shadow: 0 8px 24px rgba(14,28,61,0.22); }
+    .btn-gold { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    .btn-gold:hover { background: #b8973e; box-shadow: 0 8px 24px rgba(201,168,76,0.3); }
+
+    /* ─── Nav ─── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.94); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(14,28,61,0.08);
+    }
+    .nav-inner {
+      width: min(1320px, calc(100% - 36px)); margin: 0 auto;
+      min-height: 84px; display: flex; align-items: center;
+      justify-content: space-between; gap: 24px;
+    }
+    .brand { text-decoration: none; display: inline-flex; align-items: center; gap: 14px; flex-shrink: 0; }
+    .brand-mark { width: 4px; height: 48px; border-radius: 999px; background: linear-gradient(180deg, var(--blue), var(--navy)); }
+    .brand-text { display: flex; flex-direction: column; line-height: 1; }
+    .brand-text strong { font-size: 18px; letter-spacing: 0.18em; font-weight: 700; }
+    .brand-text span { margin-top: 7px; font-size: 11px; letter-spacing: 0.38em; text-transform: uppercase; color: var(--blue); }
+    .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; flex-wrap: wrap; justify-content: flex-end; }
+    .nav-links a {
+      display: inline-flex; align-items: center; min-height: 38px; padding: 0 11px;
+      font-size: 12.5px; font-weight: 600; color: var(--navy); border-radius: 999px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .nav-links a:hover { color: var(--blue); background: rgba(0,70,119,0.08); }
+    .nav-links .phone { color: var(--blue); font-weight: 700; }
+
+    /* ─── Hero ─── */
+    .page-hero {
+      position: relative; min-height: 340px; display: flex; align-items: center;
+      background: var(--navy); overflow: hidden;
+    }
+    .page-hero-media {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(90deg, rgba(14,28,61,0.9) 0%, rgba(14,28,61,0.75) 50%, rgba(0,70,119,0.35) 100%),
+        url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    }
+    .page-hero-content {
+      position: relative; z-index: 1;
+      width: min(1320px, calc(100% - 48px)); margin: 0 auto; padding: 80px 0;
+    }
+    .page-hero h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.8rem, 5vw, 4.2rem); font-weight: 600;
+      line-height: 0.95; letter-spacing: -0.02em; color: var(--white); margin-bottom: 16px;
+    }
+    .page-hero p {
+      font-size: 16px; color: rgba(255,255,255,0.72); max-width: 520px; line-height: 1.7;
+    }
+
+    /* ─── Breadcrumb ─── */
+    .breadcrumb { background: #f4f4f2; border-bottom: 1px solid var(--line); padding: 12px 0; }
+    .breadcrumb-inner { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-muted); }
+    .breadcrumb-inner a { color: var(--blue); }
+
+    /* ─── Story section ─── */
+    .story-section { padding: 80px 0; }
+    .story-layout {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center;
+    }
+    .story-kicker {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+    }
+    .story-kicker::before { content: ''; display: block; width: 24px; height: 2px; background: var(--blue); }
+    .story-section h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 600;
+      line-height: 1.0; letter-spacing: -0.02em; color: var(--navy); margin-bottom: 24px;
+    }
+    .story-section p { font-size: 16px; line-height: 1.8; color: var(--text); margin-bottom: 18px; }
+    .story-image {
+      aspect-ratio: 4/3;
+      background: url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+      border-radius: 4px;
+      box-shadow: 0 24px 60px rgba(14,28,61,0.14);
+    }
+
+    /* ─── Stats ─── */
+    .stats-band { background: var(--navy); padding: 56px 0; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+    .stat-item {
+      text-align: center; padding: 0 24px;
+      border-right: 1px solid rgba(255,255,255,0.12);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-item strong {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.8rem, 4vw, 4rem); font-weight: 600;
+      color: var(--white); display: block; line-height: 1; margin-bottom: 8px;
+    }
+    .stat-item p { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+
+    /* ─── Values ─── */
+    .values-section { padding: 80px 0; background: #f8f8f6; }
+    .values-section h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 600;
+      color: var(--navy); margin-bottom: 48px; text-align: center;
+    }
+    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .value-card {
+      background: var(--white); padding: 36px 28px; border-radius: 4px;
+      box-shadow: 0 4px 20px rgba(14,28,61,0.06);
+    }
+    .value-num {
+      font-family: "Cormorant Garamond", serif; font-size: 48px; font-weight: 600;
+      color: rgba(14,28,61,0.08); line-height: 1; margin-bottom: 16px;
+    }
+    .value-card h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .value-card p { font-size: 14px; line-height: 1.75; color: var(--text); }
+
+    /* ─── Team ─── */
+    .team-section { padding: 80px 0; }
+    .team-section h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 600;
+      color: var(--navy); margin-bottom: 48px; text-align: center;
+    }
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .team-member { background: var(--white); border-radius: 4px; overflow: hidden; box-shadow: 0 4px 20px rgba(14,28,61,0.07); text-align: center; }
+    .team-photo {
+      height: 220px; background: linear-gradient(160deg, #1d3461 0%, #0e1c3d 100%);
+      display: grid; place-items: center;
+      font-family: "Cormorant Garamond", serif; font-size: 52px; font-weight: 600;
+      color: rgba(255,255,255,0.15); letter-spacing: -0.02em;
+    }
+    .team-info { padding: 20px 16px; border-top: 1px solid var(--line); }
+    .team-name { font-family: "Cormorant Garamond", serif; font-size: 20px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+    .team-role { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue); }
+
+    /* ─── Enquiry section ─── */
+    .enquiry-section { padding: 80px 0; background: #f8f8f6; }
+    .enquiry-layout {
+      display: grid; grid-template-columns: 1fr 480px; gap: 72px; align-items: start;
+    }
+    .enquiry-section h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 600;
+      line-height: 1.0; letter-spacing: -0.02em; color: var(--navy); margin-bottom: 20px;
+    }
+    .enquiry-section p { font-size: 16px; line-height: 1.8; color: var(--text); margin-bottom: 16px; }
+    .enquiry-contact-items { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+    .enquiry-contact-item { display: flex; align-items: center; gap: 14px; font-size: 15px; color: var(--text); }
+    .enquiry-contact-icon {
+      width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 50%;
+      display: grid; place-items: center; flex-shrink: 0;
+    }
+    .enquiry-contact-icon svg { width: 16px; height: 16px; stroke: var(--blue); fill: none; stroke-width: 1.5; }
+    .enquiry-contact-item a { color: var(--blue); font-weight: 600; }
+
+    /* ─── Enquiry card ─── */
+    .enquiry-card {
+      background: var(--white); border-radius: 4px; padding: 36px 32px;
+      box-shadow: 0 24px 60px rgba(14,28,61,0.1);
+    }
+    .enquiry-card h3 {
+      font-family: "Cormorant Garamond", serif; font-size: 28px; font-weight: 600;
+      color: var(--navy); margin-bottom: 24px;
+    }
+    .enquiry-card select,
+    .enquiry-card input:not([type="checkbox"]),
+    .enquiry-card textarea {
+      width: 100%; padding: 12px 16px; border: 1px solid var(--line); border-radius: 4px;
+      font-family: "Manrope", sans-serif; font-size: 14px; color: var(--navy);
+      margin-bottom: 12px; background: #f8f8f8; outline: none;
+      transition: border-color 0.2s ease;
+    }
+    .enquiry-card select:focus,
+    .enquiry-card input:focus,
+    .enquiry-card textarea:focus { border-color: var(--blue); background: var(--white); }
+    .enquiry-card textarea { resize: vertical; min-height: 100px; }
+    .enquiry-card .btn {
+      width: 100%; background: var(--gold); color: var(--white);
+      border-color: var(--gold); margin-top: 4px; font-size: 13px; padding: 16px;
+    }
+    .enquiry-card .btn:hover { background: #b8973e; }
+    .enquiry-privacy {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 11px; color: var(--text-muted); margin-top: 14px; line-height: 1.5;
+    }
+    .enquiry-privacy input { margin-top: 2px; flex-shrink: 0; }
+    .enquiry-privacy a { color: var(--blue); text-decoration: underline; }
+
+    /* ─── Footer ─── */
+    footer { background: var(--navy-deep, #091426); padding: 72px 0 0; color: rgba(255,255,255,0.65); }
+    .footer-grid { display: grid; grid-template-columns: 220px 1fr 1fr; gap: 48px; padding-bottom: 56px; }
+    .footer-group h3 { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 18px; letter-spacing: 0.04em; }
+    .footer-brand { display: inline-flex; align-items: center; gap: 14px; }
+    .footer-brand .brand-text strong,
+    .footer-brand .brand-text span { color: rgba(255,255,255,0.9); }
+    .footer-newsletter-pill { display: flex; border: 1px solid rgba(255,255,255,0.2); border-radius: 999px; overflow: hidden; }
+    .footer-newsletter-pill input {
+      flex: 1; background: transparent; border: none; padding: 12px 20px;
+      font-size: 13px; color: var(--white); font-family: "Manrope", sans-serif; outline: none;
+    }
+    .footer-newsletter-pill input::placeholder { color: rgba(255,255,255,0.4); }
+    .footer-newsletter-pill button {
+      background: var(--blue); border: none; color: var(--white); padding: 12px 22px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      cursor: pointer; font-family: "Manrope", sans-serif;
+    }
+    .footer-contact-item { display: flex; align-items: center; gap: 12px; font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 12px; }
+    .footer-contact-icon { width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; }
+    .footer-contact-icon svg { width: 14px; height: 14px; stroke: rgba(255,255,255,0.6); fill: none; stroke-width: 1.5; }
+    .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 0; }
+    .footer-bottom { display: flex; gap: 48px; padding: 40px 0 28px; }
+    .footer-location { display: flex; align-items: flex-start; gap: 12px; }
+    .footer-pin { width: 28px; height: 28px; flex-shrink: 0; }
+    .footer-pin svg { width: 100%; height: 100%; stroke: rgba(255,255,255,0.3); fill: rgba(255,255,255,0.06); stroke-width: 1.5; }
+    .footer-location strong { display: block; color: var(--white); font-size: 14px; margin-bottom: 4px; }
+    .footer-location p { font-size: 13px; line-height: 1.6; }
+    .footer-social { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; display: grid; place-items: center; color: rgba(255,255,255,0.6); transition: background 0.2s ease; }
+    .footer-social:hover { background: rgba(255,255,255,0.1); }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="owen_hodge_homepage.html" class="brand">
+        <div class="brand-mark"></div>
+        <div class="brand-text">
+          <strong>OWEN HODGE</strong>
+          <span>Lawyers</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="commercial-law.html">Commercial Law</a></li>
+        <li><a href="#">Wills &amp; Estates</a></li>
+        <li><a href="#">Personal Injury</a></li>
+        <li><a href="#">Family Law</a></li>
+        <li><a href="#">Immigration Law</a></li>
+        <li><a href="#">Property Law</a></li>
+        <li><a href="about-us.html">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="tel:1800770780" class="phone">1800 770 780</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="page-hero">
+    <div class="page-hero-media" aria-hidden="true"></div>
+    <div class="page-hero-content">
+      <h1>About Owen Hodge Lawyers</h1>
+      <p>Trusted legal advice grounded in over 70 years of experience, integrity and a commitment to exceptional outcomes for every client.</p>
+    </div>
+  </header>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <div class="shell">
+      <div class="breadcrumb-inner">
+        <a href="owen_hodge_homepage.html">Home</a>
+        <span>›</span>
+        <span>About Us</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUR STORY -->
+  <section class="story-section">
+    <div class="shell">
+      <div class="story-layout">
+        <div>
+          <p class="story-kicker">Our Story</p>
+          <h2>Serving Sydney's communities since 1951</h2>
+          <p>Owen Hodge Lawyers was established with a clear purpose: to provide high-quality legal services with professionalism, integrity and genuine care for our clients. Since 1951, we have grown from a small local practice into one of Sydney's most respected law firms — while never losing sight of what matters most.</p>
+          <p>We serve individuals, families and businesses across Sydney from our offices in Turramurra, Sydney CBD and Hurstville. Whatever the legal matter, our approach remains the same: listen carefully, advise clearly and advocate strongly.</p>
+          <p>Our team of experienced lawyers brings deep expertise across commercial law, family law, wills and estates, property law, immigration law and personal injury — ensuring our clients always have access to the right specialist for their needs.</p>
+        </div>
+        <div class="story-image"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-band">
+    <div class="shell">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <strong>70+</strong>
+          <p>Years Experience</p>
+        </div>
+        <div class="stat-item">
+          <strong>20</strong>
+          <p>Specialist Lawyers</p>
+        </div>
+        <div class="stat-item">
+          <strong>3</strong>
+          <p>Locations in Sydney</p>
+        </div>
+        <div class="stat-item">
+          <strong>4.3/5</strong>
+          <p>Rate Based on 800 Reviews</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALUES -->
+  <section class="values-section">
+    <div class="shell">
+      <h2>What we stand for</h2>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-num">01</div>
+          <h3>Trusted Experience</h3>
+          <p>Since 1951, Owen Hodge Lawyers has built a strong reputation for delivering quality legal services with professionalism, integrity and care.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-num">02</div>
+          <h3>Client-Focused Service</h3>
+          <p>We combine deep legal expertise with a personal, supportive approach, ensuring every client feels informed, confident and well looked after.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-num">03</div>
+          <h3>Excellence in Every Matter</h3>
+          <p>Excellence is the standard we strive for in everything we do, from the advice we provide to the service experience we deliver.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="team-section">
+    <div class="shell">
+      <h2>Meet the Team</h2>
+      <div class="team-grid">
+        <div class="team-member">
+          <div class="team-photo">IM</div>
+          <div class="team-info">
+            <div class="team-name">Imran Mir</div>
+            <div class="team-role">Special Counsel</div>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-photo">KC</div>
+          <div class="team-info">
+            <div class="team-name">Karen Cha</div>
+            <div class="team-role">Senior Associate</div>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-photo">KB</div>
+          <div class="team-info">
+            <div class="team-name">Kristy-Lee Burns</div>
+            <div class="team-role">Partner</div>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-photo">RF</div>
+          <div class="team-info">
+            <div class="team-name">Richard Farmer</div>
+            <div class="team-role">Consultant</div>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-photo">RH</div>
+          <div class="team-info">
+            <div class="team-name">Roger Harkin</div>
+            <div class="team-role">Partner</div>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-photo">RH</div>
+          <div class="team-info">
+            <div class="team-name">Rolf Howard</div>
+            <div class="team-role">Managing Partner</div>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-photo">SL</div>
+          <div class="team-info">
+            <div class="team-name">Shirley Leo</div>
+            <div class="team-role">Lawyer</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW CAN WE HELP -->
+  <section class="enquiry-section" id="contact">
+    <div class="shell">
+      <div class="enquiry-layout">
+        <div>
+          <h2>How can we help?</h2>
+          <p>Whether you are ready to speak with a lawyer or simply want to understand your options, we are here to help. Reach out to our friendly team and we will connect you with the right specialist for your matter.</p>
+          <p>We offer a free initial consultation so you can feel informed and confident before taking the next step.</p>
+          <div class="enquiry-contact-items">
+            <div class="enquiry-contact-item">
+              <div class="enquiry-contact-icon">
+                <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.8 2.8a2 2 0 0 1-.4 2.1l-1.3 1.3a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.4 1.8.7 2.8.8A2 2 0 0 1 22 16.9z"/></svg>
+              </div>
+              <span><a href="tel:1800770780">1800 770 780</a></span>
+            </div>
+            <div class="enquiry-contact-item">
+              <div class="enquiry-contact-icon">
+                <svg viewBox="0 0 24 24"><path d="M3 6h18v12H3z"/><path d="M3 7l9 7 9-7"/></svg>
+              </div>
+              <span><a href="mailto:ohl@owenhodge.com.au">ohl@owenhodge.com.au</a></span>
+            </div>
+          </div>
+        </div>
+        <div class="enquiry-card">
+          <h3>How can we help?</h3>
+          <select aria-label="Area of law">
+            <option>Commercial Law</option>
+            <option>Wills &amp; Estates</option>
+            <option>Family Law</option>
+            <option>Property Law</option>
+            <option>Immigration Law</option>
+            <option>Personal Injury</option>
+          </select>
+          <input type="text" placeholder="Your name">
+          <input type="email" placeholder="Your email address">
+          <input type="tel" placeholder="Your phone number">
+          <textarea placeholder="Your message (optional)"></textarea>
+          <button class="btn">Submit</button>
+          <div class="enquiry-privacy">
+            <input type="checkbox" id="privacy">
+            <label for="privacy">I agree to the Owen Hodge Lawyer's <a href="#">privacy policy</a>.</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="shell">
+      <div class="footer-grid">
+        <div class="footer-group">
+          <a href="owen_hodge_homepage.html" class="footer-brand">
+            <div class="brand-mark"></div>
+            <div class="brand-text">
+              <strong>OWEN HODGE</strong>
+              <span>Lawyers</span>
+            </div>
+          </a>
+        </div>
+        <div class="footer-group">
+          <h3>Subscribe to Newsletter</h3>
+          <form onsubmit="return false;">
+            <div class="footer-newsletter-pill">
+              <input type="email" placeholder="Your email address" aria-label="Email address">
+              <button type="submit">Subscribe</button>
+            </div>
+          </form>
+        </div>
+        <div class="footer-group">
+          <h3>Contact Us</h3>
+          <div style="display:flex;align-items:flex-start;gap:48px;">
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <div class="footer-contact-item">
+                <div class="footer-contact-icon">
+                  <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.8 2.8a2 2 0 0 1-.4 2.1l-1.3 1.3a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.4 1.8.7 2.8.8A2 2 0 0 1 22 16.9z"/></svg>
+                </div>
+                <p><a href="tel:1800770780" style="color:rgba(255,255,255,0.7);">1800 770 780</a></p>
+              </div>
+              <div class="footer-contact-item">
+                <div class="footer-contact-icon">
+                  <svg viewBox="0 0 24 24"><path d="M3 6h18v12H3z"/><path d="M3 7l9 7 9-7"/></svg>
+                </div>
+                <p><a href="mailto:ohl@owenhodge.com.au" style="color:rgba(255,255,255,0.7);">ohl@owenhodge.com.au</a></p>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <p style="font-weight:700;color:rgba(255,255,255,0.88);font-size:14px;">Business hours</p>
+              <p style="font-size:14px;line-height:1.6;">Monday – Friday<br>9:00am to 5:00pm</p>
+            </div>
+            <div style="display:flex;gap:10px;align-items:center;">
+              <a href="#" class="footer-social" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              </a>
+              <a href="#" class="footer-social" aria-label="Twitter/X">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="footer-divider">
+      <div class="footer-bottom">
+        <div class="footer-location">
+          <div class="footer-pin"><svg viewBox="0 0 24 24"><path d="M12 22s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.8" fill="#004677"/></svg></div>
+          <div>
+            <strong>Owen Hodge Lawyers Sydney</strong>
+            <p>3/171 Clarence Street<br>Sydney NSW 2000</p>
+          </div>
+        </div>
+        <div class="footer-location">
+          <div class="footer-pin"><svg viewBox="0 0 24 24"><path d="M12 22s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.8" fill="#004677"/></svg></div>
+          <div>
+            <strong>Owen Hodge Lawyers Hurstville</strong>
+            <p>Level 2, 12-14 Ormonde Parade<br>Hurstville NSW 2220</p>
+          </div>
+        </div>
+        <div class="footer-location">
+          <div class="footer-pin"><svg viewBox="0 0 24 24"><path d="M12 22s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.8" fill="#004677"/></svg></div>
+          <div>
+            <strong>Owen Hodge Lawyers Turramurra</strong>
+            <p>Suite 7, 14 Eastern Road<br>Turramurra NSW 2074</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

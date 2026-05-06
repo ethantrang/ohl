@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Owen Hodge Lawyers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ─── Design Tokens ─── */
+    :root {
+      --navy: #0e1c3d;
+      --navy-deep: #091426;
+      --blue: #004677;
+      --blue-mid: #0f5a8a;
+      --gold: #c9a84c;
+      --offwhite: #f1f1ef;
+      --white: #ffffff;
+      --text: #39455f;
+      --text-muted: #6b7899;
+      --line: rgba(14, 28, 61, 0.1);
+      --line-light: rgba(255, 255, 255, 0.14);
+      --shadow: 0 24px 60px rgba(14, 28, 61, 0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: "Manrope", sans-serif; color: var(--navy); background: #ffffff; overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    .shell {
+      width: min(1240px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* ─── Buttons ─── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 14px 28px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: transform 0.22s ease, background 0.22s ease, color 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+      cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--blue); color: var(--white); }
+    .btn-primary:hover { background: var(--navy); box-shadow: 0 8px 24px rgba(14,28,61,0.22); }
+    .btn-gold { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    .btn-gold:hover { background: #b8973e; box-shadow: 0 8px 24px rgba(201,168,76,0.3); }
+    .btn-light { background: rgba(255,255,255,0.1); color: var(--white); border-color: rgba(255,255,255,0.26); }
+    .btn-light:hover { background: var(--white); color: var(--navy); }
+
+    /* ─── Nav ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(14,28,61,0.08);
+    }
+    .nav-inner {
+      width: min(1320px, calc(100% - 36px));
+      margin: 0 auto;
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+    .brand-mark {
+      width: 4px;
+      height: 48px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--blue), var(--navy));
+    }
+    .brand-text { display: flex; flex-direction: column; line-height: 1; }
+    .brand-text strong { font-size: 18px; letter-spacing: 0.18em; font-weight: 700; }
+    .brand-text span { margin-top: 7px; font-size: 11px; letter-spacing: 0.38em; text-transform: uppercase; color: var(--blue); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      list-style: none;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .nav-links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 0 11px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--navy);
+      border-radius: 999px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .nav-links a:hover { color: var(--blue); background: rgba(0,70,119,0.08); }
+    .nav-links .active { color: var(--blue); }
+    .nav-links .phone { color: var(--blue); font-weight: 700; }
+
+    /* ─── Hero ─── */
+    .page-hero {
+      position: relative;
+      min-height: 380px;
+      display: flex;
+      align-items: center;
+      background: var(--navy);
+      overflow: hidden;
+    }
+    .page-hero-media {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(14,28,61,0.88) 0%, rgba(14,28,61,0.7) 45%, rgba(0,70,119,0.3) 100%),
+        url('https://www.owenhodge.com.au/wp-content/uploads/2021/12/about-banner-scaled.webp') center center/cover no-repeat;
+    }
+    .page-hero-content {
+      position: relative;
+      z-index: 1;
+      width: min(1320px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 80px 0;
+      display: block;
+    }
+    .page-hero h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-weight: 600;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .page-hero-sub {
+      font-size: 15px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 28px;
+    }
+    .page-hero-phone {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .page-hero-phone a { color: var(--gold); }
+
+    /* ─── Enquiry card ─── */
+    .enquiry-card {
+      background: var(--white);
+      border-radius: 4px;
+      padding: 28px 24px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.2);
+    }
+    .enquiry-card h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+    .enquiry-card select,
+    .enquiry-card input:not([type="checkbox"]),
+    .enquiry-card textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      font-family: "Manrope", sans-serif;
+      font-size: 14px;
+      color: var(--navy);
+      margin-bottom: 10px;
+      background: #f8f8f8;
+    }
+    .enquiry-card .btn {
+      width: 100%;
+      background: var(--gold);
+      color: var(--white);
+      border-color: var(--gold);
+      margin-top: 4px;
+      font-size: 13px;
+      padding: 14px;
+    }
+    .enquiry-card .btn:hover { background: #b8973e; }
+    .enquiry-privacy {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+    .enquiry-privacy a { color: var(--blue); text-decoration: underline; }
+
+    /* ─── Breadcrumb ─── */
+    .breadcrumb {
+      background: #f4f4f2;
+      border-bottom: 1px solid var(--line);
+      padding: 12px 0;
+    }
+    .breadcrumb-inner {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .breadcrumb-inner a { color: var(--blue); }
+
+    /* ─── Who We Are ─── */
+    .who-section {
+      padding: 80px 0;
+      background: var(--white);
+    }
+    .who-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .section-label {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold) !important;
+      margin-bottom: 16px;
+    }
+    .section-h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.05;
+      margin-bottom: 24px;
+    }
+    .body-text {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .body-text:last-child { margin-bottom: 0; }
+    .check-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .check-list li::before {
+      content: '';
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      border-radius: 50%;
+      background: var(--blue);
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/contain no-repeat;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+
+    /* ─── Values Strip ─── */
+    .values-strip {
+      background: var(--navy);
+      padding: 56px 0;
+    }
+    .values-strip-inner {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .values-label {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-right: 48px;
+      flex-shrink: 0;
+    }
+    .values-items {
+      display: flex;
+      gap: 0;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+    .value-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 0 36px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      flex: 1;
+      min-width: 100px;
+    }
+    .value-item:last-child { border-right: none; }
+    .value-icon {
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(201,168,76,0.4);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+    }
+    .value-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.5;
+    }
+    .value-name {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-align: center;
+    }
+
+    /* ─── Commitment ─── */
+    .commitment-section {
+      padding: 80px 0;
+      background: #f8f8f6;
+    }
+    .commitment-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .commitment-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .commitment-card {
+      background: var(--white);
+      border-radius: 4px;
+      padding: 24px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      box-shadow: 0 2px 12px rgba(14,28,61,0.06);
+      border-left: 3px solid var(--blue);
+    }
+    .commitment-num {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 32px;
+      font-weight: 500;
+      color: var(--blue);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 36px;
+    }
+    .commitment-text {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    /* ─── Specialised Services ─── */
+    .services-section {
+      padding: 80px 0;
+      background: var(--white);
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 48px;
+    }
+    .service-tile {
+      background: var(--offwhite);
+      padding: 32px 28px;
+      transition: background 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-tile::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--blue);
+      transition: width 0.3s ease;
+    }
+    .service-tile:hover { background: var(--white); box-shadow: 0 4px 20px rgba(14,28,61,0.08); }
+    .service-tile:hover::after { width: 100%; }
+    .service-tile-num {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 40px;
+      font-weight: 500;
+      color: rgba(14,28,61,0.08);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .service-tile-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .service-tile a {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    /* ─── Languages ─── */
+    .languages-section {
+      padding: 56px 0;
+      background: var(--navy);
+    }
+    .languages-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .languages-heading { color: var(--white); }
+    .languages-heading .section-label { color: var(--gold); }
+    .languages-heading .section-h2 { color: var(--white); margin-bottom: 16px; }
+    .languages-heading p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.7; }
+    .languages-tags {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 8px;
+    }
+    .lang-tag {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 0;
+      font-size: 15px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.88);
+    }
+    .lang-check {
+      width: 18px; height: 18px; flex-shrink: 0;
+      color: var(--gold);
+    }
+    .lang-flag { font-size: 20px; line-height: 1; flex-shrink: 0; }
+    .lang-tag.lang-more {
+      color: rgba(255,255,255,0.38);
+      font-size: 13px;
+      font-style: italic;
+      font-weight: 400;
+      border-bottom: none;
+      gap: 10px;
+    }
+
+    /* ─── Community Section ─── */
+    .community-section {
+      padding: 80px 0;
+      background: var(--white);
+    }
+    .community-intro {
+      max-width: 680px;
+      margin-bottom: 48px;
+    }
+    .community-intro p { font-size: 15px; line-height: 1.8; color: var(--text); margin-top: 16px; }
+    .sponsorship-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+    .sponsorship-card {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 28px;
+    }
+    .sponsorship-card h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .sponsorship-card p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+    .charity-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .charity-card {
+      background: #f8f8f6;
+      border-radius: 4px;
+      padding: 28px;
+    }
+    .charity-card h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .charity-card p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    /* ─── History ─── */
+    .history-section {
+      padding: 80px 0;
+      background: #f8f8f6;
+    }
+    .history-grid {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .history-img {
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .history-img img { width: 100%; height: 320px; object-fit: cover; }
+    .history-body { padding-top: 8px; }
+    .history-body p {
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .history-body p:last-child { margin-bottom: 0; }
+    .history-quote {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 22px;
+      font-style: italic;
+      color: var(--blue);
+      border-left: 3px solid var(--gold);
+      padding-left: 20px;
+      margin: 28px 0;
+      line-height: 1.5;
+    }
+
+    /* ─── CTA Banner ─── */
+    .cta-banner {
+      background: var(--navy);
+      padding: 56px 0;
+    }
+    .cta-banner-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 24px;
+    }
+    .cta-banner h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.1;
+    }
+    .cta-banner p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.75);
+      margin-top: 10px;
+      line-height: 1.6;
+    }
+
+    /* ─── Testimonials ─── */
+    .testimonials-section {
+      padding: 80px 0;
+      background: var(--white);
+    }
+    .testimonials-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 48px;
+      color: var(--navy);
+    }
+    .testimonial-track {
+      display: flex;
+      gap: 24px;
+      overflow: hidden;
+      padding: 10px 4px 8px;
+      mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+    }
+    .testimonial-track-inner {
+      display: flex;
+      gap: 24px;
+      animation: testimonialsScroll 80s linear infinite;
+      will-change: transform;
+    }
+    .testimonial-track:hover .testimonial-track-inner {
+      animation-play-state: paused;
+    }
+    @keyframes testimonialsScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .testimonial-card {
+      background: #f8f8f6;
+      border-radius: 4px;
+      padding: 32px 28px;
+      border-left: 3px solid var(--blue);
+      width: 480px;
+      flex-shrink: 0;
+    }
+    .testimonial-card h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .testimonial-card p {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+    .testimonial-author {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-top: 8px;
+    }
+
+    /* ─── Footer ─── */
+    footer {
+      background: var(--navy-deep);
+      padding: 72px 0 0;
+      color: rgba(255,255,255,0.65);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 56px;
+    }
+    .footer-group h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 18px;
+      letter-spacing: 0.04em;
+    }
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+    .footer-brand .brand-text strong,
+    .footer-brand .brand-text span { color: rgba(255,255,255,0.9); }
+    .footer-newsletter-pill {
+      display: flex;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .footer-newsletter-pill input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      padding: 12px 20px;
+      font-size: 13px;
+      color: var(--white);
+      font-family: "Manrope", sans-serif;
+      outline: none;
+    }
+    .footer-newsletter-pill input::placeholder { color: rgba(255,255,255,0.4); }
+    .footer-newsletter-pill button {
+      background: var(--blue);
+      border: none;
+      color: var(--white);
+      padding: 12px 22px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: "Manrope", sans-serif;
+    }
+    .footer-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 12px;
+    }
+    .footer-contact-icon {
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+    .footer-contact-icon svg {
+      width: 14px;
+      height: 14px;
+      stroke: rgba(255,255,255,0.6);
+      fill: none;
+      stroke-width: 1.5;
+    }
+    .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 0; }
+    .footer-bottom {
+      display: flex;
+      gap: 48px;
+      padding: 40px 0 28px;
+    }
+    .footer-location { display: flex; align-items: flex-start; gap: 12px; }
+    .footer-pin { width: 28px; height: 28px; flex-shrink: 0; }
+    .footer-pin svg { width: 100%; height: 100%; stroke: rgba(255,255,255,0.3); fill: rgba(255,255,255,0.06); stroke-width: 1.5; }
+    .footer-location strong { display: block; color: var(--white); font-size: 14px; margin-bottom: 4px; }
+    .footer-location p { font-size: 13px; line-height: 1.6; }
+    .footer-social {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: rgba(255,255,255,0.6);
+      transition: background 0.2s ease;
+    }
+    .footer-social:hover { background: rgba(255,255,255,0.1); }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="owen_hodge_homepage.html" class="brand">
+        <div class="brand-mark"></div>
+        <div class="brand-text">
+          <strong>OWEN HODGE</strong>
+          <span>Lawyers</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="commercial-law.html">Commercial Law</a></li>
+        <li><a href="#">Wills &amp; Estates</a></li>
+        <li><a href="#">Personal Injury</a></li>
+        <li><a href="#">Family Law</a></li>
+        <li><a href="#">Immigration Law</a></li>
+        <li><a href="#">Property Law</a></li>
+        <li><a href="about.html" class="active">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="tel:1800770780" class="phone">1800 770 780</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="page-hero">
+    <div class="page-hero-media" aria-hidden="true"></div>
+    <div class="page-hero-content">
+      <div>
+        <h1>About Us</h1>
+        <p class="page-hero-sub">Proudly serving the Sydney community since 1951 — delivering quality legal services with clarity, direction and security.</p>
+        <p class="page-hero-phone">Get in touch: <a href="tel:1800770780">1800 770 780</a></p>
+      </div>
+    </div>
+  </header>
+
+  <!-- BREADCRUMB -->
+
+  <!-- WHO WE ARE -->
+  <section class="who-section">
+    <div class="shell">
+      <div class="who-grid">
+        <div>
+          <p class="section-label">Our Firm</p>
+          <h2 class="section-h2">Who we are</h2>
+          <p class="body-text">Owen Hodge Lawyers is a top tier law firm that Sydney residents rely on. We commenced providing legal services to the St George and Sutherland communities in 1951. Since then, Owen Hodge Lawyers has grown considerably — developing a reputation for quality legal services, value for money and a strong commitment to excellence.</p>
+          <p class="body-text">Today, the Owen Hodge Sydney lawyers provide expert advice in a diverse range of business legal services and personal law matters. We have Sydney offices in the city CBD, Hurstville and Turramurra.</p>
+          <p class="body-text">We endeavour to keep our clients up to date with any changes in the law which might affect their business or private affairs. With our eBooks, videos and blog, you can access all of the latest information.</p>
+          <p class="body-text">At all times, clients can feel confident Owen Hodge Lawyers will handle all matters with professionalism and efficiency. This is guaranteed with our Law 9000: Legal Best Practice certification. This is a benchmark management system based on internationally recognised standards and a set of best-practice criteria specific to a legal practice.</p>
+        </div>
+        <div>
+          <p class="section-label">Our Commitment</p>
+          <h2 class="section-h2">Our commitment to you</h2>
+          <p class="body-text">Owen Hodge Lawyers works to ensure that an experience with us is as positive as possible. Our objective is to be a leader amongst our peers by offering:</p>
+          <ul class="check-list">
+            <li>Expertise in services offered and superior service delivery</li>
+            <li>Constant improvement of human resource policies and practices</li>
+            <li>Constant technology improvement and development</li>
+            <li>Convenient office locations</li>
+          </ul>
+          <p class="body-text" style="margin-top:24px;">Our entire team, as well as support staff, are all committed to ensuring their clients get the best result every time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES STRIP -->
+  <section class="values-strip">
+    <div class="shell">
+      <div class="values-strip-inner">
+        <div class="values-label">Our Values</div>
+        <div class="values-items">
+          <div class="value-item">
+            <div class="value-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/></svg>
+            </div>
+            <div class="value-name">Integrity</div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            <div class="value-name">Expertise</div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">
+              <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+            </div>
+            <div class="value-name">Professionalism</div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">
+              <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+            </div>
+            <div class="value-name">Empowerment</div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="value-name">Teamwork</div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div class="value-name">Excellence</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECIALISED SERVICES -->
+  <section class="services-section">
+    <div class="shell">
+      <p class="section-label">What we do</p>
+      <h2 class="section-h2">Specialised legal services</h2>
+      <p class="body-text" style="max-width:680px;">Our lawyers are leading specialists in their fields, from personal lawyers to bankruptcy lawyers and everything in between. With a long history of helping the Sydney community navigate the legal system, our team is made up of:</p>
+      <div class="services-grid">
+        <div class="service-tile">
+          <div class="service-tile-num">01</div>
+          <div class="service-tile-title">Commercial Litigation &amp; Commercial Lawyers</div>
+        </div>
+        <div class="service-tile">
+          <div class="service-tile-num">02</div>
+          <div class="service-tile-title">Wills &amp; Estate Lawyers</div>
+        </div>
+        <div class="service-tile">
+          <div class="service-tile-num">03</div>
+          <div class="service-tile-title">Personal Injury Lawyers</div>
+        </div>
+        <div class="service-tile">
+          <div class="service-tile-num">04</div>
+          <div class="service-tile-title">Family Lawyers</div>
+        </div>
+        <div class="service-tile">
+          <div class="service-tile-num">05</div>
+          <div class="service-tile-title">Commercial Property Lawyers &amp; Conveyancers</div>
+        </div>
+        <div class="service-tile">
+          <div class="service-tile-num">06</div>
+          <div class="service-tile-title">Immigration Lawyers</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LANGUAGES -->
+  <section class="languages-section">
+    <div class="shell">
+      <div class="languages-inner">
+        <div class="languages-heading">
+          <p class="section-label">Accessibility</p>
+          <h2 class="section-h2">We speak your language</h2>
+          <p>We also understand that English is not everyone's first language. This is why we offer our legal services in a number of languages, because we believe everybody should have access to legal advice they understand.</p>
+          <p style="margin-top:12px;">We also have access to interpreters in many other languages.</p>
+        </div>
+        <div class="languages-tags">
+          <span class="lang-tag"><svg class="lang-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span class="lang-flag">🇦🇺</span> English</span>
+          <span class="lang-tag"><svg class="lang-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span class="lang-flag">🇻🇳</span> Vietnamese</span>
+          <span class="lang-tag"><svg class="lang-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span class="lang-flag">🇭🇰</span> Cantonese</span>
+          <span class="lang-tag"><svg class="lang-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span class="lang-flag">🇸🇦</span> Arabic</span>
+          <span class="lang-tag"><svg class="lang-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span class="lang-flag">🇪🇬</span> Egyptian</span>
+          <span class="lang-tag"><svg class="lang-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span class="lang-flag">🇬🇷</span> Greek</span>
+          <span class="lang-tag"><svg class="lang-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span class="lang-flag">🇨🇳</span> Mandarin</span>
+          <span class="lang-tag lang-more"><svg class="lang-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Many more via interpreters</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY / SPONSORSHIPS -->
+  <section class="community-section">
+    <div class="shell">
+      <div class="community-intro">
+        <p class="section-label">Community</p>
+        <h2 class="section-h2">Working towards a better tomorrow</h2>
+        <p>At Owen Hodge Lawyers, we care about our community and we aim to build a brighter future for the people around us. Our lawyers provide complementary information seminars throughout the year in order to give individuals the information they need before proceeding with our services. This allows our community to keep up to date with laws affecting them. For more information on upcoming seminars, call 1800 770 780 or sign up to our newsletter.</p>
+        <p style="margin-top:12px;">Owen Hodge Lawyers is a proudly Australian law firm. We provide sponsorship, legal advice and representation to various not for profit organisations, which help our community.</p>
+        <p style="margin-top:12px;">These not for profit organisations include:</p>
+        <ul class="check-list" style="margin-top:8px;">
+          <li>The Pole Depot</li>
+          <li>Lutanda Children's Services</li>
+          <li>Emmaus Bible College</li>
+          <li>Sylvanvale Foundation</li>
+          <li>Salvation Army</li>
+        </ul>
+      </div>
+
+      <p class="section-label" style="margin-bottom:24px;">Sponsorships</p>
+      <div class="sponsorship-grid">
+        <div class="sponsorship-card">
+          <h3>Wills panel solicitors for the St Vincent De Paul</h3>
+          <p>As NFP lawyers, we are proud to be on the panel of solicitors for St Vincent De Paul. We hold a long-standing relationship with the organisation.</p>
+        </div>
+        <div class="sponsorship-card">
+          <h3>Hurstville Seniors Week</h3>
+          <p>The Owen Hodge law firm is proud to play a role in the annual Seniors Week Celebration organised by Hurstville City Council. As part of the planning committee, we provide input on how the week can best suit the senior community we represent. Details on the next Seniors Week will be posted here. Please sign up for our newsletters if you would like the details mailed to you.</p>
+        </div>
+        <div class="sponsorship-card">
+          <h3>St George Illawarra Dragons</h3>
+          <p>We are proud to be a platinum supporter of the St George Illawarra Dragons.</p>
+        </div>
+        <div class="sponsorship-card">
+          <h3>Association of Independent Retirees – Sydney St George Branch</h3>
+          <p>We are glad to assist the Association of Independent Retirees with the publication of their monthly newsletter. James Kelly has provided talks to the group on how to write a Will, Power of Attorney and estate planning.</p>
+        </div>
+        <div class="sponsorship-card">
+          <h3>Hurstville Seniors Computer Club</h3>
+          <p>We have worked closely with the Hurstville Seniors Computer Club over the years, assisting with the publication of their newsletter and talking to the club about their estate planning needs. The Hurstville Seniors Computer Club was wound up in early 2023.</p>
+        </div>
+        <div class="sponsorship-card">
+          <h3>St George District Cricket Club</h3>
+          <p>Owen Hodge Lawyers are proud to sponsor the St George District Cricket Club.</p>
+        </div>
+      </div>
+
+      <p class="section-label" style="margin-bottom:24px; margin-top:48px;">Prizes</p>
+      <div class="sponsorship-grid">
+        <div class="sponsorship-card">
+          <h3>Sydney Technical High School</h3>
+          <p>Owen Hodge Lawyers has a long association with Sydney Technical High School. We proudly donate 2 prizes for the Annual School's Speech Night:</p>
+          <ul style="margin-top:10px;padding-left:20px;font-size:14px;color:var(--text-muted);line-height:1.7;">
+            <li>Owen Hodge Lawyers Prize for Year 11 Legal Studies</li>
+            <li>Owen Hodge Lawyers Prize for Year 12 Legal Studies</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="section-label" style="margin-bottom:24px; margin-top:48px;">Charity</p>
+      <div class="charity-grid">
+        <div class="charity-card">
+          <h3>Salvation Army</h3>
+          <p>The Owen Hodge law firm proudly supports the Salvation Army. We have been proud to offer the services of our solicitors to provide a complementary will service. Participants on the day were asked to make a $40.00 donation directly to the Salvation Army.</p>
+        </div>
+        <div class="charity-card">
+          <h3>Intellectual Disability Foundation of St George</h3>
+          <p>The Intellectual Disability Foundation of St George hold their Annual Charity Golf Day at Kogarah Golf Course. Owen Hodge Lawyers was proud to be a sponsor of this event. Neil Lewis, our Lending Manager, attends on behalf of Owen Hodge: "it is great to see so many local businesses supporting this important charity event".</p>
+        </div>
+        <div class="charity-card">
+          <h3>CareFlight Movie Mania</h3>
+          <p>"Movie Mania" is a project conducted by Magic Mania on behalf of CareFlight for the benefit of special needs children.</p>
+          <p style="margin-top:8px;">The purpose of this project is to provide a unique and fun day out for children with disabilities to raise funds to support Careflight's emergency medical retrieval services and specialist doctors. This outing is an event that these children might never have had the opportunity to attend without the help of the supporters. Owen Hodge is very proud to support this good cause.</p>
+        </div>
+        <div class="charity-card">
+          <h3>Children's Cancer Institute Australia</h3>
+          <p>Owen Hodge Lawyers Sydney has also worked together with the Children's Cancer Institute to provide Wills.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:48px;padding:32px;background:var(--navy);border-radius:4px;">
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#fff;margin-bottom:12px;">Speak to a lawyer</h3>
+        <p style="font-size:15px;line-height:1.7;color:rgba(255,255,255,0.72);">If you need legal advice, or have any questions regarding our services, don't hesitate to contact Owen Hodge Lawyers today on <a href="tel:1800770780" style="color:var(--gold);">1800 770 780</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HISTORY -->
+  <section class="history-section">
+    <div class="shell">
+      <p class="section-label">Est. 1951</p>
+      <h2 class="section-h2" style="margin-bottom:48px;">Our history</h2>
+      <div class="history-grid">
+        <div class="history-img">
+          <img src="https://www.owenhodge.com.au/wp-content/uploads/2021/11/image-29.webp" alt="Owen Hodge Lawyers history" loading="lazy">
+        </div>
+        <div class="history-body">
+          <p>Owen Hodge Lawyers was founded by Owen Hodge himself in 1951. Originally he traded under the name Owen D Hodge Solicitors later changing to Owen Hodge &amp; Son Solicitors in 1974 to mark the partnership between Owen and his son Russell.</p>
+          <p>Owen undertook a great deal of work for Legacy despite not being a legatee himself, his mother was President of the local branch of Legacy. Owen was unique for his time in that he spent 6 years working overseas gaining experience and furthering his knowledge. He served for 3 years in the Australian Army and another 3 years as a navigator flying in Lancaster Bombers</p>
+          <p>Russell began working as a solicitor under Owen in July 1973 before being made a partner of the firm in July 1974. Owen was diagnosed with Motor Neuron Disease in 1980 and retired from practice in approximately 1984. Sadly he passed away in 1987.</p>
+          <p>Owen Hodge Lawyers provide expert legal services to a diverse range of individual and commercial law clients in areas ranging from and including Business Succession, Commercial Litigation, Commercial Property, Employment Law, Family Law, Wills &amp; Estate Planning and Personal Injury. Our Hurstville, Sydney CBD and Oran Park Lawyers are highly experienced solicitors and attorneys.</p>
+          <p>We believe in being different. Our passion is to provide our clients with clarity, direction and security.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="shell">
+      <div class="cta-banner-inner">
+        <div>
+          <h2>Just ask us a question</h2>
+          <p>We are always ready to help you.</p>
+        </div>
+        <a href="#" class="btn btn-light">Enquire Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section">
+    <div class="shell">
+      <h2 class="testimonials-title">Here's what our clients are saying</h2>
+      <div class="testimonial-track">
+        <div class="testimonial-track-inner">
+          <div class="testimonial-card">
+            <h4>Thank you Alice Holman and Christine Vrahas</h4>
+            <p>Owen Hodge – particularly Alice Holman and Christine Vrahas, with the help of co-partner James Kelly – were efficacious, pragmatic and most reassuring in the eighteen months we went into battle in a probate case. At a most emotional time, they traversed me through a complex legal landscape with kindness and accessibility. I cannot recommend them more highly!</p>
+            <div class="testimonial-author">M.A.</div>
+          </div>
+          <div class="testimonial-card">
+            <h4>Thank you for all of the assistance</h4>
+            <p>A short note to thank you for all of the assistance you gave us recently. Thanks for taking all of my calls and for meeting with me at short notice. We realise the effort on your part to co-ordinate all of the processes in such a short time frame …. but we made it!</p>
+            <div class="testimonial-author">Deborah Chowns</div>
+          </div>
+          <div class="testimonial-card">
+            <h4>Dear Kristy-Lee</h4>
+            <p>My divorce has gone through without a hitch. Thank you for all your help and advice through this process.</p>
+            <div class="testimonial-author">Mr. F</div>
+          </div>
+          <div class="testimonial-card">
+            <h4>Excellent Legal Advice</h4>
+            <p>Owen Hodge Lawyers have provided me with excellent legal advice. The processes they administered were done thoroughly and all actions communicated clearly. They provide a friendly and considerate service and I would certainly recommend them to others.</p>
+            <div class="testimonial-author">Chris Dewhurst</div>
+          </div>
+          <div class="testimonial-card">
+            <h4>Excellent talk by James Kelly</h4>
+            <p>The information provided, both in the excellent talk by James Kelly and the handout, was extremely beneficial as an outline on a number of legal aspects. As is often said 'a man who is his own lawyer has a fool for a client'. Please therefore seek professional advice before jumping in and changing your present position.</p>
+            <div class="testimonial-author">Denis Solari</div>
+          </div>
+          <div class="testimonial-card">
+            <h4>Expert help during a moment of crisis</h4>
+            <p>Owen Hodge Lawyers' expert help in a moment of crisis for me was invaluable. They were extremely professional in judging the situation and facts and responded in a way that I felt the matter was going to be resolved. The entire team was very approachable, knowledgeable and confident in the area of employment law.</p>
+            <div class="testimonial-author">C. M.</div>
+          </div>
+          <div class="testimonial-card">
+            <h4>Helpful and Supportive</h4>
+            <p>During my divorce proceedings I was in a position I had never experienced previously. Kristy Lee advised me in a way that was easy to understand but also firm &amp; direct which to my surprise led to a favorable outcome and put an end to any future hardship I could have gone through.</p>
+            <div class="testimonial-author">Mr F</div>
+          </div>
+          <div class="testimonial-card">
+            <h4>I won my case at the Guardianship Tribunal</h4>
+            <p>I won my case at the Guardianship Tribunal yesterday. I feel very confident that the correct decision was reached by the Tribunal. Thank you again so much Owen Hodge, for all your advice and support. It has been invaluable. Thank you so much again.</p>
+            <div class="testimonial-author">Lisa Terrill</div>
+          </div>
+          <div class="testimonial-card">
+            <h4>Immigration Team Review</h4>
+            <p>Will definitely recommend Owen Hodge lawyers to those who need guidance and expert advice. I worked with the Immigration team and they are very professional, honest and straight to the point. Owen Hodge Lawyers have guided me every step of the way.</p>
+            <div class="testimonial-author">Stefano Nicastro</div>
+          </div>
+          <div class="testimonial-card">
+            <h4>Increased my cash collection</h4>
+            <p>I have been dealing with Owen Hodge Lawyers for approximately 2 years now, in that time they have increased my cash collections by 100%. Their assistance in the recovery of doubtful debts has been exceptional. The prompt response and friendly manner of the staff is second to none.</p>
+            <div class="testimonial-author">Christina Safar</div>
+          </div>
+          <div class="testimonial-card">
+            <h4>Many Thanks</h4>
+            <p>Many thanks to Christine Vrahas, Alice Holman, and James Kelly for all the time and support that was given leading up to the settlement of my Aunts estate.</p>
+            <div class="testimonial-author">D. Rae</div>
+          </div>
+          <div class="testimonial-card">
+            <h4>Thank Debbie and James</h4>
+            <p>Just a quick note to thank Debbie and James for the great work you did for Dad in the sale of his Greglea unit. You made the sale for me very easy to deal with and I appreciate the effort you put into it.</p>
+            <div class="testimonial-author">Margaret Crawford</div>
+          </div>
+          <div class="testimonial-card">
+            <h4>Thank You Alice &amp; Team – I would not have survived without you</h4>
+            <p>Dear Alice and the Team, I would like to thank you and your team for the help and guidance you have given me throughout the year. As this was a new experience for me as executor I appreciate the time and effort shown. Without your assistance I would have been at a complete loss.</p>
+            <div class="testimonial-author">Jan Wilkinson</div>
+          </div>
+          <!-- Duplicate set for seamless infinite scroll -->
+          <div class="testimonial-card">
+            <h4>Thank you Alice Holman and Christine Vrahas</h4>
+            <p>Owen Hodge – particularly Alice Holman and Christine Vrahas, with the help of co-partner James Kelly – were efficacious, pragmatic and most reassuring in the eighteen months we went into battle in a probate case. At a most emotional time, they traversed me through a complex legal landscape with kindness and accessibility. I cannot recommend them more highly!</p>
+            <div class="testimonial-author">M.A.</div>
+          </div>
+          <div class="testimonial-card">
+            <h4>Thank you for all of the assistance</h4>
+            <p>A short note to thank you for all of the assistance you gave us recently. Thanks for taking all of my calls and for meeting with me at short notice. We realise the effort on your part to co-ordinate all of the processes in such a short time frame …. but we made it!</p>
+            <div class="testimonial-author">Deborah Chowns</div>
+          </div>
+          <div class="testimonial-card">
+            <h4>Dear Kristy-Lee</h4>
+            <p>My divorce has gone through without a hitch. Thank you for all your help and advice through this process.</p>
+            <div class="testimonial-author">Mr. F</div>
+          </div>
+          <div class="testimonial-card">
+            <h4>Excellent Legal Advice</h4>
+            <p>Owen Hodge Lawyers have provided me with excellent legal advice. The processes they administered were done thoroughly and all actions communicated clearly. They provide a friendly and considerate service and I would certainly recommend them to others.</p>
+            <div class="testimonial-author">Chris Dewhurst</div>
+          </div>
+          <div class="testimonial-card">
+            <h4>Excellent talk by James Kelly</h4>
+            <p>The information provided, both in the excellent talk by James Kelly and the handout, was extremely beneficial as an outline on a number of legal aspects. As is often said 'a man who is his own lawyer has a fool for a client'. Please therefore seek professional advice before jumping in and changing your present position.</p>
+            <div class="testimonial-author">Denis Solari</div>
+          </div>
+          <div class="testimonial-card">
+            <h4>Expert help during a moment of crisis</h4>
+            <p>Owen Hodge Lawyers' expert help in a moment of crisis for me was invaluable. They were extremely professional in judging the situation and facts and responded in a way that I felt the matter was going to be resolved. The entire team was very approachable, knowledgeable and confident in the area of employment law.</p>
+            <div class="testimonial-author">C. M.</div>
+          </div>
+          <div class="testimonial-card">
+            <h4>Helpful and Supportive</h4>
+            <p>During my divorce proceedings I was in a position I had never experienced previously. Kristy Lee advised me in a way that was easy to understand but also firm &amp; direct which to my surprise led to a favorable outcome and put an end to any future hardship I could have gone through.</p>
+            <div class="testimonial-author">Mr F</div>
+          </div>
+          <div class="testimonial-card">
+            <h4>I won my case at the Guardianship Tribunal</h4>
+            <p>I won my case at the Guardianship Tribunal yesterday. I feel very confident that the correct decision was reached by the Tribunal. Thank you again so much Owen Hodge, for all your advice and support. It has been invaluable. Thank you so much again.</p>
+            <div class="testimonial-author">Lisa Terrill</div>
+          </div>
+          <div class="testimonial-card">
+            <h4>Immigration Team Review</h4>
+            <p>Will definitely recommend Owen Hodge lawyers to those who need guidance and expert advice. I worked with the Immigration team and they are very professional, honest and straight to the point. Owen Hodge Lawyers have guided me every step of the way.</p>
+            <div class="testimonial-author">Stefano Nicastro</div>
+          </div>
+          <div class="testimonial-card">
+            <h4>Increased my cash collection</h4>
+            <p>I have been dealing with Owen Hodge Lawyers for approximately 2 years now, in that time they have increased my cash collections by 100%. Their assistance in the recovery of doubtful debts has been exceptional. The prompt response and friendly manner of the staff is second to none.</p>
+            <div class="testimonial-author">Christina Safar</div>
+          </div>
+          <div class="testimonial-card">
+            <h4>Many Thanks</h4>
+            <p>Many thanks to Christine Vrahas, Alice Holman, and James Kelly for all the time and support that was given leading up to the settlement of my Aunts estate.</p>
+            <div class="testimonial-author">D. Rae</div>
+          </div>
+          <div class="testimonial-card">
+            <h4>Thank Debbie and James</h4>
+            <p>Just a quick note to thank Debbie and James for the great work you did for Dad in the sale of his Greglea unit. You made the sale for me very easy to deal with and I appreciate the effort you put into it.</p>
+            <div class="testimonial-author">Margaret Crawford</div>
+          </div>
+          <div class="testimonial-card">
+            <h4>Thank You Alice &amp; Team – I would not have survived without you</h4>
+            <p>Dear Alice and the Team, I would like to thank you and your team for the help and guidance you have given me throughout the year. As this was a new experience for me as executor I appreciate the time and effort shown. Without your assistance I would have been at a complete loss.</p>
+            <div class="testimonial-author">Jan Wilkinson</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="shell">
+      <div class="footer-grid">
+        <div class="footer-group">
+          <a href="owen_hodge_homepage.html" class="footer-brand">
+            <div class="brand-mark"></div>
+            <div class="brand-text">
+              <strong>OWEN HODGE</strong>
+              <span>Lawyers</span>
+            </div>
+          </a>
+        </div>
+        <div class="footer-group">
+          <h3>Subscribe to Newsletter</h3>
+          <form onsubmit="return false;">
+            <div class="footer-newsletter-pill">
+              <input type="email" placeholder="Your email address" aria-label="Email address">
+              <button type="submit">Subscribe</button>
+            </div>
+          </form>
+        </div>
+        <div class="footer-group">
+          <h3>Contact Us</h3>
+          <div style="display:flex;align-items:flex-start;gap:48px;">
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <div class="footer-contact-item">
+                <div class="footer-contact-icon">
+                  <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.8 2.8a2 2 0 0 1-.4 2.1l-1.3 1.3a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.4 1.8.7 2.8.8A2 2 0 0 1 22 16.9z"/></svg>
+                </div>
+                <p><a href="tel:1800770780" style="color:rgba(255,255,255,0.7);">1800 770 780</a></p>
+              </div>
+              <div class="footer-contact-item">
+                <div class="footer-contact-icon">
+                  <svg viewBox="0 0 24 24"><path d="M3 6h18v12H3z"/><path d="M3 7l9 7 9-7"/></svg>
+                </div>
+                <p><a href="mailto:ohl@owenhodge.com.au" style="color:rgba(255,255,255,0.7);">ohl@owenhodge.com.au</a></p>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;white-space:nowrap;">
+              <p style="font-weight:700;color:rgba(255,255,255,0.88);font-size:14px;">Business hours</p>
+              <p style="color:rgba(255,255,255,0.65);font-size:14px;line-height:1.6;">Monday – Friday<br>9:00am to 5:00pm</p>
+            </div>
+            <div style="display:flex;gap:10px;align-items:center;">
+              <a href="#" class="footer-social" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              </a>
+              <a href="#" class="footer-social" aria-label="Twitter/X">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="footer-divider">
+      <div class="footer-bottom">
+        <div class="footer-location">
+          <div class="footer-pin"><svg viewBox="0 0 24 24"><path d="M12 22s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.8" fill="#004677"/></svg></div>
+          <div>
+            <strong>Owen Hodge Lawyers Sydney</strong>
+            <p>3/171 Clarence Street<br>Sydney NSW 2000</p>
+          </div>
+        </div>
+        <div class="footer-location">
+          <div class="footer-pin"><svg viewBox="0 0 24 24"><path d="M12 22s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.8" fill="#004677"/></svg></div>
+          <div>
+            <strong>Owen Hodge Lawyers Hurstville</strong>
+            <p>Level 2, 12-14 Ormonde Parade<br>Hurstville NSW 2220</p>
+          </div>
+        </div>
+        <div class="footer-location">
+          <div class="footer-pin"><svg viewBox="0 0 24 24"><path d="M12 22s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.8" fill="#004677"/></svg></div>
+          <div>
+            <strong>Owen Hodge Lawyers Turramurra</strong>
+            <p>Suite 7, 14 Eastern Road<br>Turramurra NSW 2074</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // FAQ accordion (reusable)
+    document.querySelectorAll('.faq-item').forEach(function (item) {
+      item.addEventListener('click', function () {
+        var isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(function (el) { el.classList.remove('open'); });
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
