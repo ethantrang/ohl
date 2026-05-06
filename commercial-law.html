@@ -495,16 +495,34 @@
       margin-bottom: 48px;
       color: var(--navy);
     }
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
+    .testimonial-track {
+      display: flex;
       gap: 24px;
+      overflow: hidden;
+      padding: 10px 4px 8px;
+      mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+    }
+    .testimonial-track-inner {
+      display: flex;
+      gap: 24px;
+      animation: testimonialsScroll 40s linear infinite;
+      will-change: transform;
+    }
+    .testimonial-track:hover .testimonial-track-inner {
+      animation-play-state: paused;
+    }
+    @keyframes testimonialsScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
     .testimonial-card {
       background: #f8f8f6;
       border-radius: 4px;
       padding: 32px 28px;
       border-left: 3px solid var(--blue);
+      width: 480px;
+      flex-shrink: 0;
     }
     .testimonial-card h4 {
       font-size: 14px;
@@ -516,22 +534,12 @@
       font-size: 14px;
       line-height: 1.75;
       color: var(--text);
-      margin-bottom: 20px;
+      margin-bottom: 14px;
     }
     .testimonial-author {
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--blue);
-    }
-    .read-more {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--blue);
       margin-top: 8px;
@@ -554,7 +562,7 @@
     .faq-item {
       display: grid;
       grid-template-columns: 48px 1fr auto;
-      align-items: center;
+      align-items: start;
       gap: 16px;
       padding: 20px 0;
       border-bottom: 1px solid var(--line);
@@ -566,11 +574,13 @@
       font-weight: 500;
       color: var(--blue);
       line-height: 1;
+      padding-top: 2px;
     }
     .faq-q {
       font-size: 15px;
       font-weight: 600;
       color: var(--navy);
+      padding-top: 4px;
     }
     .faq-icon {
       width: 28px;
@@ -582,7 +592,24 @@
       flex-shrink: 0;
       color: var(--blue);
       font-size: 18px;
+      margin-top: 2px;
+      transition: transform 0.2s;
     }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-body {
+      grid-column: 2 / 3;
+      display: none;
+      padding: 12px 0 4px;
+      font-size: 15px;
+      color: #444;
+      line-height: 1.7;
+    }
+    .faq-item.open .faq-body { display: block; }
+    .faq-body ul {
+      margin: 8px 0 0 0;
+      padding-left: 20px;
+    }
+    .faq-body ul li { margin-bottom: 6px; }
     .faq-cta { text-align: center; }
 
     /* ─── Articles ─── */
@@ -800,8 +827,7 @@
       <!-- SERVICE CARDS -->
       <div class="service-rows" id="services">
         <div class="service-row">
-          <span class="service-row-num">01</span>
-          <div class="service-row-progress"></div>
+<div class="service-row-progress"></div>
           <div class="service-row-inner">
             <div class="service-row-label">Practice Area</div>
             <div class="service-row-title">Business Support</div>
@@ -810,42 +836,38 @@
           </div>
         </div>
         <div class="service-row">
-          <span class="service-row-num">02</span>
-          <div class="service-row-progress"></div>
+<div class="service-row-progress"></div>
           <div class="service-row-inner">
             <div class="service-row-label">Practice Area</div>
             <div class="service-row-title">Commercial Litigation</div>
-            <div class="service-row-desc">Specialising in legal disputes and conflict related to businesses and companies, including drafting of contracts and agreements.</div>
+            <div class="service-row-desc">Commercial litigation is a branch of law specialising in legal disputes and conflicts related to businesses. It is more specific than business law, which also includes the drafting of contracts and agreements by our team of commercial lawyers.</div>
             <a href="#" class="learn-btn">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
         </div>
         <div class="service-row">
-          <span class="service-row-num">03</span>
-          <div class="service-row-progress"></div>
+<div class="service-row-progress"></div>
           <div class="service-row-inner">
             <div class="service-row-label">Practice Area</div>
             <div class="service-row-title">Employment Law</div>
-            <div class="service-row-desc">Addressing the legal rights and responsibilities of working people and their organisations under Australian law.</div>
+            <div class="service-row-desc">Employment law is the body of laws, administrative rulings, and precedents that address the legal rights and responsibilities of working people and their organisations.</div>
             <a href="#" class="learn-btn">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
         </div>
         <div class="service-row">
-          <span class="service-row-num">04</span>
-          <div class="service-row-progress"></div>
+<div class="service-row-progress"></div>
           <div class="service-row-inner">
             <div class="service-row-label">Practice Area</div>
             <div class="service-row-title">Not for Profit</div>
-            <div class="service-row-desc">Trusted by numerous not-for-profit organisations across a range of different areas throughout NSW.</div>
+            <div class="service-row-desc">Owen Hodge Lawyers have worked with numerous not-for-profit organisations across a range of different areas.</div>
             <a href="#" class="learn-btn">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
         </div>
         <div class="service-row">
-          <span class="service-row-num">05</span>
-          <div class="service-row-progress"></div>
+<div class="service-row-progress"></div>
           <div class="service-row-inner">
             <div class="service-row-label">Practice Area</div>
             <div class="service-row-title">Commercial Property</div>
-            <div class="service-row-desc">A practical approach to property lease matters, providing fast service at a reasonable price.</div>
+            <div class="service-row-desc">In property lease matters we take a practical approach and provide fast service at a reasonable price.</div>
             <a href="#" class="learn-btn">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
         </div>
@@ -941,7 +963,8 @@
   <section class="testimonials-section" id="testimonials">
     <div class="shell">
       <h2 class="testimonials-title">Here's what our clients are saying</h2>
-      <div class="testimonials-grid">
+      <div class="testimonial-track">
+        <div class="testimonial-track-inner">
         <div class="testimonial-card">
           <h4>Excellent talk by James Kelly</h4>
           <p>The information provided, both in the excellent talk by James Kelly and the handout, was extremely beneficial as an outline on a number of legal aspects.</p>
@@ -969,6 +992,34 @@
           <p>I will recommend at this law firm to my friends!</p>
           <div class="testimonial-author">Cathleen W</div>
         </div>
+        <div class="testimonial-card">
+          <h4>Excellent talk by James Kelly</h4>
+          <p>The information provided, both in the excellent talk by James Kelly and the handout, was extremely beneficial as an outline on a number of legal aspects.</p>
+          <p>Just a word of caution however in that, whilst there appear to be benefits in taking certain one course of action, there can also be expenses or problems that result for it. As is often said "a man who is his own lawyer has a fool for a client". Please therefore seek professional advice before jumping in and changing your present position if you think any action is necessary.</p>
+          <div class="testimonial-author">Denis Solari</div>
+        </div>
+        <div class="testimonial-card">
+          <h4>Increased my cash collection</h4>
+          <p>"I have been dealing with Owen Hodge Lawyers for approximately 2 years now, in that time they have increased my cash collections by 100%. Their assistance in the recovery of doubtful debts has been exceptional.</p>
+          <p>The prompt response to request and the friendly manner of the staff is second to none. The staff are both friendly and highly knowledgeable in the requirements of commercial collections.</p>
+          <p>If you are in the market for a firm who is target driven while ensuring exceptional customer service, Owen Hodge are definitely the firm to engage. Many thanks to the team for both their expertise and honest and reliable advice."</p>
+          <div class="testimonial-author">Christina Safar</div>
+        </div>
+        <div class="testimonial-card">
+          <h4>Thank you for all of the assistance</h4>
+          <p>"A short note to thank you for all of the assistance you gave us recently.</p>
+          <p>Thanks for taking all of my calls and for meeting with me at short notice. We realise the effort on your part to co-ordinate all of the processes in such a short time frame .... but we made it!"</p>
+          <div class="testimonial-author">Deborah Chowns</div>
+        </div>
+        <div class="testimonial-card">
+          <h4>Thank you very much for your patience and professional advice on our case</h4>
+          <p>We had found Owen Hodge Lawyers when we were very sad and our case was looking helpless.</p>
+          <p>We had found your company when we were very sad and helpless. Mr. Rolf is very experienced and gave us advice and help us win the case.</p>
+          <p>In the long wait period for the whole case, we especially want to thank Krislyn whom is very patient and helpful. She assisted us and gave us guidance so that we can clearly understand our situation and rights.</p>
+          <p>I will recommend at this law firm to my friends!</p>
+          <div class="testimonial-author">Cathleen W</div>
+        </div>
+        </div>
       </div>
     </div>
   </section>
@@ -982,21 +1033,51 @@
           <div class="faq-num">01</div>
           <div class="faq-q">How does Owen Hodge Lawyers handle commercial disputes?</div>
           <div class="faq-icon">+</div>
+          <div class="faq-body">
+            The approach to commercial disputes varies depending on the nature of the case. Our lawyers begin with a thorough assessment of the dispute and explore all available resolution options — including negotiation, mediation, and arbitration — before proceeding to litigation. Where court action is necessary, our experienced commercial litigators will represent your interests at every stage.
+          </div>
         </div>
         <div class="faq-item">
           <div class="faq-num">02</div>
           <div class="faq-q">Can Owen Hodge Lawyers assist with corporate compliance issues?</div>
           <div class="faq-icon">+</div>
+          <div class="faq-body">
+            Yes, Owen Hodge Lawyers are experienced in providing legal advice for corporate compliance issues. We help businesses understand their obligations under Australian law, implement compliant governance frameworks, and respond to regulatory inquiries. Whether you're a start-up or an established company, we provide practical guidance to keep your operations on the right side of the law.
+          </div>
         </div>
         <div class="faq-item">
           <div class="faq-num">03</div>
           <div class="faq-q">Why Choose Our Business and Commercial Lawyers?</div>
           <div class="faq-icon">+</div>
+          <div class="faq-body">
+            <ul>
+              <li>Accredited and experienced commercial law team</li>
+              <li>Offices in <strong>Sydney CBD and Hurstville</strong> for your convenience</li>
+              <li>Dedicated legal support for companies of all sizes</li>
+              <li>Cost-effective, practical legal solutions</li>
+              <li>Clear advice, delivered with a personable and proactive approach</li>
+            </ul>
+          </div>
         </div>
         <div class="faq-item">
           <div class="faq-num">04</div>
           <div class="faq-q">What areas of commercial law do you cover?</div>
           <div class="faq-icon">+</div>
+          <div class="faq-body">
+            <p>Our corporate and business lawyers advise on a broad range of matters, including:</p>
+            <ul>
+              <li>Commercial contracts and agreements</li>
+              <li>Business sales and acquisitions (M&amp;A)</li>
+              <li>Commercial property leases and retail leasing</li>
+              <li>Corporate governance and compliance</li>
+              <li>Employment law and workplace relations</li>
+              <li>Business structuring and asset protection</li>
+              <li>Intellectual property advice</li>
+              <li>Debt recovery and commercial disputes</li>
+              <li>Business litigation and dispute resolution</li>
+            </ul>
+            <p style="margin-top:12px;">Whether you're negotiating a new deal or responding to a legal challenge, our commercial lawyers are here to ensure your interests are protected and your business can operate with confidence.</p>
+          </div>
         </div>
       </div>
       <div class="faq-cta">
@@ -1166,6 +1247,15 @@
         });
       });
     })();
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-item').forEach(function (item) {
+      item.addEventListener('click', function () {
+        var isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(function (el) { el.classList.remove('open'); });
+        if (!isOpen) item.classList.add('open');
+      });
+    });
   </script>
 
 </body>
